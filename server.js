@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const db = require('./config/db');
 
 const app = express();
 const PORT = 3000;
@@ -8,10 +9,8 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 
-// Ruta de prueba
-app.get('/', (req, res) => {
-  res.send('✅ El servidor está funcionando correctamente');
-});
+const getTablas = require ('./routers/get/obtenerTablas');
+app.use(getTablas)
 
 // Iniciar servidor
 app.listen(PORT, () => {
